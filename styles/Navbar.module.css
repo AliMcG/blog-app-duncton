@@ -1,0 +1,27 @@
+.navbar {
+  background-color: #ffffff;
+  height: 3rem;
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  height: 100%;
+  color: black;
+  font-size: 2rem;
+  font-family: 'Bangers', cursive;
+  
+}
+.navbar p {
+  margin: 0;
+}
+.title {
+  margin: 2rem;
+  line-height: 1.15;
+  font-size: 4rem;
+  font-family: 'Bangers', cursive;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
