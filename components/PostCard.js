@@ -1,9 +1,9 @@
 function PostCard(props) {
   return ( <>
-    <div className={styles.card}>
+    <div >
             <h2>{props.title}</h2>
-            <p>{props.content}</p>
-            <p>{props.image}</p>
+            <p>{props.boby}</p>
+            {/* <p>{props.image}</p> */}
           </div>
   </> );
 }

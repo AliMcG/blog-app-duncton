@@ -1,0 +1,9 @@
+.single {
+  margin: 2rem;
+  border: 2px black;
+  width: 20rem;
+}
+
+.single h1 {
+  color: black;
+}

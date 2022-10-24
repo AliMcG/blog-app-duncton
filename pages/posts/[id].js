@@ -1,13 +1,39 @@
-import Layout from '../../components/layout';
+import styles from "../../styles/Single.module.css"
 
-export default function Post() {
-  return <Layout>...</Layout>;
+export const getStaticPaths = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+  const data = await res.json()
+
+  const paths = data.map(post => {
+    return {
+      params: { id: post.id.toString() }
+    }
+  })
+
+  return {
+    paths,
+    fallback: false
+  }
 }
 
-export async function getStaticPaths() {
-  // Return a list of possible value for id
+export const getStaticProps = async (context) => {
+  const id = context.params.id
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/" + id)
+  const data = await res.json()
+
+  return {
+    props: { post: data }
+  }
 }
 
-export async function getStaticProps({ params }) {
-  // Fetch necessary data for the blog post using params.id
+const BlogDetails = ({ post }) => {
+  return ( 
+    <div className={styles.single}>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+
+    </div>
+   );
 }
+ 
+export default BlogDetails;
