@@ -9,7 +9,7 @@ function Navbar() {
       </header>
       <nav className={styles.navbar}>
         <p><Link href="/"><a>Home,</a></Link>{" "}<Link href="/about"><a>About,</a></Link>{" "}
-        <Link href="/contact"><a>Contact,</a></Link>{" "}<Link href="/posts"><a>Archive</a></Link></p>
+        <Link href="/contact"><a>Contact,</a></Link>{" "}<Link href="/posts"><a>Archive,</a></Link>{" "}<Link href="/upload"><a>Upload</a></Link></p>
       </nav>
     </>
   );

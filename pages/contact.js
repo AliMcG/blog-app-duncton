@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+// Have contact details for how to get in touch
 function Contact() {
   return ( <>
     <h3>Contact details will go here</h3>
