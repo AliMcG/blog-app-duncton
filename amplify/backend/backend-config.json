@@ -42,5 +42,12 @@
         ]
       }
     }
+  },
+  "storage": {
+    "s3blogappdunctonstoragedb7c7315": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

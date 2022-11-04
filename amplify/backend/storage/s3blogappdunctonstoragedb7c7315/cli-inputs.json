@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3blogappdunctonstoragedb7c7315",
+  "bucketName": "blogappduncton-storage-db7c7315",
+  "policyUUID": "829ee7d8",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
