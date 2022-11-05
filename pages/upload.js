@@ -1,128 +1,143 @@
-import { Amplify, Auth } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import awsExports from '../src/aws-exports';
-import { useReducer, useState } from "react"
-import { API } from "aws-amplify";
-import * as mutations from '../src/graphql/mutations';
+import { Amplify, Auth } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+import awsExports from "../src/aws-exports";
+import { useReducer, useState } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { createPost, updatePost, deletePost } from "../src/graphql/mutations";
 Amplify.configure(awsExports);
 
 // boilerplate from AWS S3 Storage bucket
-import { Storage } from "@aws-amplify/storage"
+import { Storage } from "@aws-amplify/storage";
 
 // await Storage.put('test.txt', 'Protected Content', {
 //     level: 'protected',
 //     contentType: 'text/plain'
 // });
 
-
 // this page should be secure
 
 const initialState = {
-  id: 1,
   title: "",
   description: "",
   // imageFile: ""
 };
 
-const reducer = (state, action) => {
+const reducer = async (state, action) => {
   switch (action.type) {
     case "title":
       return {
         ...state,
         title: action.title,
-      }
+      };
     case "description":
       return {
         ...state,
-        description: action.description
-      }
+        description: action.description,
+      };
     case "image":
       return {
-        imageFile: action.imageFile
-      }
-    case "submit":
+        imageFile: action.imageFile,
+      };
+    // case "submit":
+
+    //   console.log("state inside reducer when API called: ", state)
+    //   try {
+    //     await API.graphql(graphqlOperation(createPost, {input: state}));
+    //   }
+    //   catch (err) {
+    //     console.log(err)
+    //   }
+    //   return state;
+
+    case "reset":
       return {
-        ...initialState
-      }
+        ...initialState,
+      };
     default:
       return state;
-  }}
+  }
+};
 
 function Upload({ signOut, user }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  
-  const [imageFile, setImageFile] = useState("")
 
-  async function handleSubmit(e) {
-    
-    // const { title, blogText } = e.target;
-    console.log("This was called with: ", state);
+  const [imageFile, setImageFile] = useState("");
 
-    // this doesn't create a new blogpost: 
-    // const newTodo = await API.graphql({ query: mutations.createPost, variables: {input: state}});
-    // console.log("posted data: ", newTodo)
-    dispatch({ type: "submit" })
-    // dispatch({
-    //   type: "add_blogs",
-    //   title: title,
-    //   blogText: content
-    // });
-    // setTitle("")
-    // setBlogText("")
-    // setImageFile("")
-    e.preventDefault()
+  const blog = { title: "My nth blog", description: "Hello Again world!" };
+
+  /* create a todo */
+
+  async function handleClick() {
+    // console.log("Clicked and sent:", blog)
+    await API.graphql(graphqlOperation(createPost, { input: state }));
   }
 
-  function handleChange(event){
+  async function handleSubmit(e) {
+    try {
+      await API.graphql(graphqlOperation(createPost, { input: state }));
+    } catch (err) {
+      console.log(err);
+    }
+   
+    dispatch({ type: "reset" });
+
+    e.preventDefault();
+  }
+
+  function handleChange(event) {
     // destructs the event.target
     const { name, value } = event.target;
-    // using prevValue of the state object, the spread operator to spread then add the new value.
+
     // [name] reads the name from the input tag
     dispatch({ type: name, [name]: value });
   }
 
-  return ( <>
-    
+  return (
     <>
-      <h1>Hello {user.username}</h1>
-      <button onClick={signOut}>Sign out</button>
-      <br></br>
-      <h1>Write a new blog entry</h1>
-      <form onSubmit={handleSubmit} >
-          
-            <input 
-              type="text" 
-              name="title"
-              placeholder="Title..."
-              value={state.title}
-              onChange={handleChange} />
-          
+      <>
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
+        <br></br>
+        <h1>Write a new blog entry</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="title"
+            placeholder="Title..."
+            value={state.title}
+            onChange={handleChange}
+          />
+
           <br></br>
-          
-            <textarea 
-              name="description"
-              placeholder="Content..."
-              value={state.description}
-              rows="4" 
-              cols="50"
-              onChange={handleChange} />
+
+          <textarea
+            name="description"
+            placeholder="Content..."
+            value={state.description}
+            rows="4"
+            cols="50"
+            onChange={handleChange}
+          />
           <br></br>
-          <label>
+          {/* <label>
             Add Image:
             <br></br>
-            <input 
+            <input
               type="file"
               name="image"
               value={imageFile}
-              onChange={(e) => setImageFile(e.target.value)} />
-          </label>
+              onChange={(e) => setImageFile(e.target.value)}
+            />
+          </label> */}
           <br></br>
           <input type="submit" value="Submit" />
         </form>
         <br></br>
+        <button onClick={handleClick}>Click to create post</button>
+      </>
     </>
-  </> );
+  );
 }
 
 export default withAuthenticator(Upload);
