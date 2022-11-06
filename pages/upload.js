@@ -71,19 +71,17 @@ function Upload({ signOut, user }) {
 
   async function handleClick() {
     // console.log("Clicked and sent:", blog)
-    await API.graphql(graphqlOperation(createPost, { input: state }));
+    await API.graphql(graphqlOperation(createPost, { input: blog }));
   }
 
   async function handleSubmit(e) {
-    try {
-      await API.graphql(graphqlOperation(createPost, { input: state }));
-    } catch (err) {
-      console.log(err);
-    }
-   
-    dispatch({ type: "reset" });
-
     e.preventDefault();
+    
+    console.log("This is handleSubmit")
+    await API.graphql(graphqlOperation(createPost, { input: blog }, { errorPolicy: "all" }));
+    // dispatch({ type: "reset" });
+    setBlog(initialState)
+    
   }
 
   function handleChange(event) {
@@ -91,7 +89,11 @@ function Upload({ signOut, user }) {
     const { name, value } = event.target;
 
     // [name] reads the name from the input tag
-    dispatch({ type: name, [name]: value });
+    setBlog((prevValue) => {
+      return { ...prevValue, [name]: value };
+    });
+    console.log(blog)
+    // dispatch({ type: name, [name]: value });
   }
 
   return (
