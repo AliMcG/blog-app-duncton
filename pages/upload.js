@@ -61,10 +61,11 @@ const reducer = async (state, action) => {
 
 function Upload({ signOut, user }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [blog, setBlog] = useState(initialState)
 
   const [imageFile, setImageFile] = useState("");
 
-  const blog = { title: "My nth blog", description: "Hello Again world!" };
+  // const blog = { title: "My nth blog", description: "Hello Again world!" };
 
   /* create a todo */
 
@@ -105,7 +106,7 @@ function Upload({ signOut, user }) {
             type="text"
             name="title"
             placeholder="Title..."
-            value={state.title}
+            value={blog.title}
             onChange={handleChange}
           />
 
@@ -114,7 +115,7 @@ function Upload({ signOut, user }) {
           <textarea
             name="description"
             placeholder="Content..."
-            value={state.description}
+            value={blog.description}
             rows="4"
             cols="50"
             onChange={handleChange}
