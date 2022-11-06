@@ -2,7 +2,7 @@ import { Amplify, Auth } from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import awsExports from "../src/aws-exports";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { createPost, updatePost, deletePost } from "../src/graphql/mutations";
 Amplify.configure(awsExports);
@@ -20,66 +20,24 @@ import { Storage } from "@aws-amplify/storage";
 const initialState = {
   title: "",
   description: "",
-  // imageFile: ""
-};
-
-const reducer = async (state, action) => {
-  switch (action.type) {
-    case "title":
-      return {
-        ...state,
-        title: action.title,
-      };
-    case "description":
-      return {
-        ...state,
-        description: action.description,
-      };
-    case "image":
-      return {
-        imageFile: action.imageFile,
-      };
-    // case "submit":
-
-    //   console.log("state inside reducer when API called: ", state)
-    //   try {
-    //     await API.graphql(graphqlOperation(createPost, {input: state}));
-    //   }
-    //   catch (err) {
-    //     console.log(err)
-    //   }
-    //   return state;
-
-    case "reset":
-      return {
-        ...initialState,
-      };
-    default:
-      return state;
-  }
 };
 
 function Upload({ signOut, user }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  
   const [blog, setBlog] = useState(initialState)
-
   const [imageFile, setImageFile] = useState("");
-
-  // const blog = { title: "My nth blog", description: "Hello Again world!" };
-
-  /* create a todo */
-
-  async function handleClick() {
-    // console.log("Clicked and sent:", blog)
-    await API.graphql(graphqlOperation(createPost, { input: blog }));
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     
     console.log("This is handleSubmit")
-    await API.graphql(graphqlOperation(createPost, { input: blog }, { errorPolicy: "all" }));
-    // dispatch({ type: "reset" });
+    await API.graphql(graphqlOperation(createPost, { input: blog }));
+
+    await Storage.put(imageFile, 'Protected Content', {
+          level: 'protected',
+          contentType: 'image'
+      });
+
     setBlog(initialState)
     
   }
@@ -92,8 +50,6 @@ function Upload({ signOut, user }) {
     setBlog((prevValue) => {
       return { ...prevValue, [name]: value };
     });
-    console.log(blog)
-    // dispatch({ type: name, [name]: value });
   }
 
   return (
@@ -123,7 +79,7 @@ function Upload({ signOut, user }) {
             onChange={handleChange}
           />
           <br></br>
-          {/* <label>
+          <label>
             Add Image:
             <br></br>
             <input
@@ -132,12 +88,11 @@ function Upload({ signOut, user }) {
               value={imageFile}
               onChange={(e) => setImageFile(e.target.value)}
             />
-          </label> */}
+          </label>
           <br></br>
           <input type="submit" value="Submit" />
         </form>
-        <br></br>
-        <button onClick={handleClick}>Click to create post</button>
+        
       </>
     </>
   );

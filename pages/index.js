@@ -1,22 +1,31 @@
 import PostCard from "../components/PostCard";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import { API } from 'aws-amplify';
+import { listPosts } from "../src/graphql/queries"; 
 
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async ()=> {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts")
-  const data = await res.json()
-
+  const data = await await API.graphql({ query: listPosts });
+  // const data = await res.json()
+  console.log(data.data.listPosts.items)
   return {
-    props: { posts: data }
+    props: { posts: data.data.listPosts.items }
   }
 }
+
+// import { API, graphqlOperation } from 'aws-amplify';
+
+// const oneTodo = await API.graphql(
+//   graphqlOperation(queries.getTodo, { id: 'some id' })
 
 // Can sort the data to show the 10 most recent posts here on home page?
 
 // main page it shows post data with a substring for the post.text
 
-export default function Home({ posts }) {
+export default function Home({ posts}) {
+
+  console.log(posts)
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -26,7 +35,7 @@ export default function Home({ posts }) {
             <Link href={"/posts/" + post.id} key={post.id} >
             <a  className={styles.card}>
             <h2>{post.title}</h2>
-            <p>{post.body.substring(0, 80)}...</p>
+            <p>{post.description.substring(0, 80)}...</p>
             </a>
             </Link>
            ))}
