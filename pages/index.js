@@ -3,10 +3,12 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { API } from 'aws-amplify';
 import { listPosts } from "../src/graphql/queries"; 
+import Image from 'next/image'
+
 
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async ()=> {
-  const data = await await API.graphql({ query: listPosts });
+  const data = await API.graphql({ query: listPosts });
   // const data = await res.json()
   console.log(data.data.listPosts.items)
   return {
@@ -36,6 +38,7 @@ export default function Home({ posts}) {
             <a  className={styles.card}>
             <h2>{post.title}</h2>
             <p>{post.description.substring(0, 80)}...</p>
+            <Image src="/trees.jpg" alt="Trees" width="64" height="64"/>
             </a>
             </Link>
            ))}

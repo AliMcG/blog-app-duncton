@@ -7,7 +7,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "auth": {
-        "blogappduncton71051e3c": {
+        "blogappduncton692539eb": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -15,12 +15,6 @@ export type AmplifyDependentResourcesAttributes = {
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
             "AppClientID": "string"
-        }
-    },
-    "storage": {
-        "s3blogappdunctonstoragedb7c7315": {
-            "BucketName": "string",
-            "Region": "string"
         }
     }
 }

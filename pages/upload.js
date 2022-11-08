@@ -33,10 +33,10 @@ function Upload({ signOut, user }) {
     console.log("This is handleSubmit")
     await API.graphql(graphqlOperation(createPost, { input: blog }));
 
-    await Storage.put(imageFile, 'Protected Content', {
-          level: 'protected',
-          contentType: 'image'
-      });
+    // await Storage.put(imageFile, 'Protected Content', {
+    //       level: 'protected',
+    //       contentType: 'image'
+    //   });
 
     setBlog(initialState)
     
@@ -46,6 +46,7 @@ function Upload({ signOut, user }) {
     // destructs the event.target
     const { name, value } = event.target;
 
+     // using prevValue of the state object, the spread operator to spread then add the new value.
     // [name] reads the name from the input tag
     setBlog((prevValue) => {
       return { ...prevValue, [name]: value };
