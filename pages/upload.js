@@ -3,12 +3,13 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 // import awsExports from "../src/aws-exports";
 import { useState } from "react";
-// import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 // import { createPost, updatePost, deletePost } from "../src/graphql/mutations";
 // Amplify.configure(awsExports);
 
 // boilerplate from AWS S3 Storage bucket
 import { Storage } from "@aws-amplify/storage";
+import { createBlog } from "../src/graphql/mutations";
 
 // await Storage.put('test.txt', 'Protected Content', {
 //     level: 'protected',
@@ -21,8 +22,8 @@ const initialState = {
   title: "",
   description: "",
 };
-
-function Upload({ signOut, user }) {
+// { signOut, user }
+function Upload() {
   
   const [blog, setBlog] = useState(initialState)
   const [imageFile, setImageFile] = useState("");
@@ -31,7 +32,7 @@ function Upload({ signOut, user }) {
     e.preventDefault();
     
     console.log("This is handleSubmit")
-    // await API.graphql(graphqlOperation(createPost, { input: blog }));
+    await API.graphql(graphqlOperation(createBlog, { input: blog }));
 
     // await Storage.put(imageFile, 'Protected Content', {
     //       level: 'protected',
@@ -57,7 +58,7 @@ function Upload({ signOut, user }) {
     <>
       <>
         {/* <h1>Hello {user.username}</h1> */}
-        <button onClick={signOut}>Sign out</button>
+        {/* <button onClick={signOut}>Sign out</button> */}
         <br></br>
         <h1>Write a new blog entry</h1>
         <form onSubmit={handleSubmit}>
