@@ -1,15 +1,15 @@
-// import { Amplify, Auth } from "aws-amplify";
+import { Amplify, Auth } from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-// import awsExports from "../src/aws-exports";
+import awsExports from "../src/aws-exports";
 import { useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-// import { createPost, updatePost, deletePost } from "../src/graphql/mutations";
-// Amplify.configure(awsExports);
+import { createTodo } from "../src/graphql/mutations";
+Amplify.configure(awsExports);
 
 // boilerplate from AWS S3 Storage bucket
-import { Storage } from "@aws-amplify/storage";
-import { createBlog } from "../src/graphql/mutations";
+// import { Storage } from "@aws-amplify/storage";
+
 
 // await Storage.put('test.txt', 'Protected Content', {
 //     level: 'protected',
@@ -23,7 +23,7 @@ const initialState = {
   description: "",
 };
 // { signOut, user }
-function Upload() {
+function Upload({ signOut, user }) {
   
   const [blog, setBlog] = useState(initialState)
   const [imageFile, setImageFile] = useState("");
@@ -32,8 +32,8 @@ function Upload() {
     e.preventDefault();
     
     console.log("This is handleSubmit", blog, imageFile)
-    // await API.graphql(graphqlOperation(createBlog, { input: blog }));
-
+    await API.graphql(graphqlOperation(createTodo, { input: blog }));
+    // console.log(result)
     // await Storage.put(imageFile, 'Protected Content', {
     //       level: 'protected',
     //       contentType: 'image'
@@ -57,8 +57,8 @@ function Upload() {
   return (
     <>
       <>
-        {/* <h1>Hello {user.username}</h1> */}
-        {/* <button onClick={signOut}>Sign out</button> */}
+        <h1>Hello {user.username}</h1>
+        <button onClick={signOut}>Sign out</button>
         <br></br>
         <h1>Write a new blog entry</h1>
         <form onSubmit={handleSubmit}>
@@ -100,5 +100,5 @@ function Upload() {
   );
 }
 
-export default Upload;
-// export default withAuthenticator(Upload);
+// export default Upl
+export default withAuthenticator(Upload);
