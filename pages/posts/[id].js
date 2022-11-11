@@ -2,7 +2,7 @@ import styles from "../../styles/Single.module.css"
 import { API, graphqlOperation } from 'aws-amplify';
 // import { listPosts, getPost } from "../src/graphql/queries"; 
 
-export const getStaticPaths = async () => {
+// export const getStaticPaths = async () => {
   // const data = await API.graphql({ query: listPosts });
 
   // const paths = data.data.listPosts.items.map(post => {
@@ -16,7 +16,7 @@ export const getStaticPaths = async () => {
   //   paths,
   //   fallback: false
   // }
-}
+// }
 
 
 // // Query using a parameter

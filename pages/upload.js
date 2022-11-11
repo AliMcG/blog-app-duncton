@@ -31,8 +31,8 @@ function Upload() {
   async function handleSubmit(e) {
     e.preventDefault();
     
-    console.log("This is handleSubmit")
-    await API.graphql(graphqlOperation(createBlog, { input: blog }));
+    console.log("This is handleSubmit", blog, imageFile)
+    // await API.graphql(graphqlOperation(createBlog, { input: blog }));
 
     // await Storage.put(imageFile, 'Protected Content', {
     //       level: 'protected',

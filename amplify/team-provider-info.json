@@ -10,14 +10,6 @@
       "StackName": "amplify-blogappduncton-dev-144318",
       "StackId": "arn:aws:cloudformation:eu-west-1:911926927732:stack/amplify-blogappduncton-dev-144318/b35b8270-5f73-11ed-a615-02895f738efb",
       "AmplifyAppId": "d1tyilzegwq5jg"
-    },
-    "categories": {
-      "api": {
-        "blogappduncton": {}
-      },
-      "auth": {
-        "blogappdunctone0ef3303": {}
-      }
     }
   }
 }
