@@ -22,7 +22,7 @@ function Posts({ posts }) {
             <Link href={"/posts/" + post.id} key={post.id} >
             <a  className={styles.card}>
             <h2>{post.title}</h2>
-            <p>{post.body}</p>
+            <p>{post.description}</p>
             </a>
             </Link>
     ))}
