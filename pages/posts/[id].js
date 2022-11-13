@@ -37,7 +37,7 @@ export const getStaticProps = async (context) => {
 }
 
 const BlogDetails = ({ post }) => {
-  console.log(post.data.getTodo.title)
+  // console.log(post.data.getTodo.title)
   return ( 
     <div className={styles.single}>
       <h1>{post.data.getTodo.title}</h1>

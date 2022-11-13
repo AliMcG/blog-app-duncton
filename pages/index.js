@@ -10,7 +10,7 @@ import { listTodos } from "../src/graphql/queries";
 export const getStaticProps = async ()=> {
   const data = await API.graphql({ query: listTodos });
   // // const data = await res.json()
-  console.log(data.data.listTodos.items)
+  // console.log(data.data.listTodos.items)
   return {
     props: { posts: data.data.listTodos.items }
   }
@@ -27,18 +27,18 @@ export const getStaticProps = async ()=> {
 
 export default function Home({ posts}) {
 
-  console.log(posts)
+  // console.log(posts)
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         
-         <h1>The Beverage Blogs</h1>
+         
            {posts.map(post => (
             <Link href={"/posts/" + post.id} key={post.id} >
             <a  className={styles.card}>
             <h2>{post.title}</h2>
             <p>{post.description.substring(0, 80)}...</p>
-            <Image src="/trees.jpg" alt="Trees" width="64" height="64"/>
+            <Image src="/trees.jpg" alt="Trees" width="475" height="275"/>
             </a>
             </Link>
            ))}
