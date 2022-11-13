@@ -1,22 +1,23 @@
 import styles from "../../styles/Single.module.css"
-// import { API, graphqlOperation } from 'aws-amplify';
-// import { listPosts, getPost } from "../src/graphql/queries"; 
+import { API, graphqlOperation } from 'aws-amplify';
+import { listTodos, getTodo } from "../../src/graphql/queries";
 
-// export const getStaticPaths = async () => {
-  // const data = await API.graphql({ query: listPosts });
 
-  // const paths = data.data.listPosts.items.map(post => {
-  //   return {
-  //     params: { id: post.id.toString() }
-  //   }
-  // }
-  // )
+export const getStaticPaths = async () => {
+  const data = await API.graphql({ query: listTodos });
 
-  // return {
-  //   paths,
-  //   fallback: false
-  // }
-// }
+  const paths = data.data.listTodos.items.map(post => {
+    return {
+      params: { id: post.id.toString() }
+    }
+  }
+  )
+
+  return {
+    paths,
+    fallback: false
+  }
+}
 
 
 // // Query using a parameter
@@ -25,21 +26,22 @@ import styles from "../../styles/Single.module.css"
 //   variables: { id: 'some id' }
 // });
 
-// export const getStaticProps = async (context) => {
-//   // const id = context.params.id
-//   const data = await API.graphql(graphqlOperation(getPost, { id: id }));
+export const getStaticProps = async (context) => {
+  const id = context.params.id
+  const data = await API.graphql(graphqlOperation(getTodo, { id: id }));
   
 
-//   return {
-//     props: { post: data }
-//   }
-// }
+  return {
+    props: { post: data}
+  }
+}
 
 const BlogDetails = ({ post }) => {
+  console.log(post.data.getTodo.title)
   return ( 
     <div className={styles.single}>
-      <h1>{post.title}</h1>
-      <p>{post.description}</p>
+      <h1>{post.data.getTodo.title}</h1>
+      <p>{post.data.getTodo.description}</p>
 
     </div>
    );
