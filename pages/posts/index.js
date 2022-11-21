@@ -1,16 +1,18 @@
 import Link from "next/link"
 import styles from "../../styles/Posts.module.css";
-import { API } from 'aws-amplify';
+// import { API } from 'aws-amplify';
 // import { listPosts } from "../src/graphql/queries"; 
-const listPosts = []
+import testData from "../../Data/testPostData";
+
+
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async ()=> {
-  const data = listPosts
+  
   // await API.graphql({ query: listPosts });
   // // const data = await res.json()
   // console.log(data.data.listPosts.items)
   return {
-    props: { posts: data }
+    props: { posts: testData }
   }
 }
 

@@ -1,29 +1,21 @@
-import { Amplify, Auth } from "aws-amplify";
-import { withAuthenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-import awsExports from "../src/aws-exports";
+// import { Amplify, Auth } from "aws-amplify";
+// import { withAuthenticator } from "@aws-amplify/ui-react";
+// import "@aws-amplify/ui-react/styles.css";
+// import awsExports from "../src/aws-exports";
 import { useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
-import { createTodo } from "../src/graphql/mutations";
-Amplify.configure(awsExports);
-
-// boilerplate from AWS S3 Storage bucket
-// import { Storage } from "@aws-amplify/storage";
+// import { API, graphqlOperation } from "aws-amplify";
+// import { createTodo } from "../src/graphql/mutations";
+// Amplify.configure(awsExports);
 
 
-// await Storage.put('test.txt', 'Protected Content', {
-//     level: 'protected',
-//     contentType: 'text/plain'
-// });
-
-// this page should be secure
 
 const initialState = {
   title: "",
   description: "",
 };
+
 // { signOut, user }
-function Upload({ signOut, user }) {
+function Upload() {
   
   const [blog, setBlog] = useState(initialState)
   const [imageFile, setImageFile] = useState("");
@@ -32,12 +24,8 @@ function Upload({ signOut, user }) {
     e.preventDefault();
     
     console.log("This is handleSubmit", blog, imageFile)
-    await API.graphql(graphqlOperation(createTodo, { input: blog }));
-    // console.log(result)
-    // await Storage.put(imageFile, 'Protected Content', {
-    //       level: 'protected',
-    //       contentType: 'image'
-    //   });
+    // await API.graphql(graphqlOperation(createTodo, { input: blog }));
+    
 
     setBlog(initialState)
     
@@ -57,8 +45,8 @@ function Upload({ signOut, user }) {
   return (
     <>
       <>
-        <h1>Hello {user.username}</h1>
-        <button onClick={signOut}>Sign out</button>
+        <h1>Hello username</h1>
+        <button >Sign out</button>
         <br></br>
         <h1>Write a new blog entry</h1>
         <form onSubmit={handleSubmit}>
@@ -101,4 +89,4 @@ function Upload({ signOut, user }) {
 }
 
 // export default Upl
-export default withAuthenticator(Upload);
+export default Upload;

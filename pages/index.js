@@ -1,18 +1,19 @@
 import PostCard from "../components/PostCard";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
-import { API } from 'aws-amplify';
+// import { API } from 'aws-amplify';
 import Image from 'next/image'
-import { listTodos } from "../src/graphql/queries";
+import testData from "../Data/testPostData";
+// import { listTodos } from "../src/graphql/queries";
 
 // const listPosts = []
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async ()=> {
-  const data = await API.graphql({ query: listTodos });
+  // const data = await API.graphql({ query: listTodos });
   // // const data = await res.json()
   // console.log(data.data.listTodos.items)
   return {
-    props: { posts: data.data.listTodos.items }
+    props: { posts: testData }
   }
 }
 
@@ -25,7 +26,7 @@ export const getStaticProps = async ()=> {
 
 // main page it shows post data with a substring for the post.text
 
-export default function Home({ posts}) {
+export default function Home({ posts }) {
 
   // console.log(posts)
   return (
