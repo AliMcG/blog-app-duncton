@@ -31,7 +31,7 @@ export default function Home({ posts }) {
   // console.log(posts)
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
+      <main >
         
          
            {posts.map(post => (
@@ -39,7 +39,7 @@ export default function Home({ posts }) {
             <a  className={styles.card}>
             <h2>{post.title}</h2>
             <p>{post.description.substring(0, 80)}...</p>
-            <Image src="/trees.jpg" alt="Trees" width="475" height="275"/>
+            <Image src={post.image ? post.image : "/trees.jpg"} alt="Trees" width="1000" height="1000"/>
             </a>
             </Link>
            ))}

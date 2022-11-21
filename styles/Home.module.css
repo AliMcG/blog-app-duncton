@@ -6,12 +6,7 @@
   align-items: center;
 }
 
-.main {
-  /* min-height: 100vh;
-  padding: 4rem 0; */
-  /* flex: 1; */
-  
-}
+
 
 
 
@@ -84,14 +79,11 @@
   color: rgb(79, 76, 76);
 }
 
-.card img {
-  width: 29.6875rem;
-}
+.card Image {
+  width: 2rem;
+} 
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
+
 
 @media (max-width: 600px) {
   .grid {
@@ -112,3 +104,5 @@
     filter: invert(1);
   }
 }
+
+
