@@ -30,7 +30,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.id
   // const data = await API.graphql(graphqlOperation(getTodo, { id: id }));
-  const data = testData[id]
+  const data = testData[id - 1]
   
 
   return {

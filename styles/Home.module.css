@@ -52,6 +52,12 @@
   flex-direction: row-reverse;
 }
 
+.card:nth-child(odd) article {
+  background-color: red;
+  position: relative;
+  right: 12rem;
+}
+
 .card:hover,
 .card:focus,
 .card:active {

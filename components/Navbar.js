@@ -1,10 +1,10 @@
 import styles from "../styles/Navbar.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import SearchBar from "./SearchBar";
 // import { createContext, useContext } from 'react';
 import { useState } from "react"
 import titleImage from "../public/harry-duncton-header_trans_.png";
-// import title from "/public/HarryDunctonheader_trans_.png"
 
 function Navbar() {
   
@@ -27,8 +27,8 @@ function Navbar() {
   return (
     <>
     <button onClick={handleClick} className={styles.login}>{user ? "Logout" : "Login"}</button>
+    <SearchBar />
       <header className={styles.header}>
-        {/* <h1 className={styles.title}>Harry Duncton</h1> */}
         <Image
           src={titleImage}
           style={headerStyle}
@@ -36,7 +36,9 @@ function Navbar() {
           width="1000"
           height="200"
         />
+        
       </header>
+      
       <nav className={styles.navbar}>
         
         <Link href="/">

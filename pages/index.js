@@ -37,9 +37,12 @@ export default function Home({ posts }) {
            {posts.map(post => (
             <Link href={"/posts/" + post.id} key={post.id} >
             <a  className={styles.card}>
+            <article>
             <h2>{post.title}</h2>
             <p>{post.description.substring(0, 80)}...</p>
-            <Image src={post.image ? post.image : "/trees.jpg"} alt="Trees" width="475" height="275"/>
+            </article>
+            
+            <Image src={post.image ? post.image : "/trees.jpg"} alt="Trees" width="375" height="275"/>
             </a>
             </Link>
            ))}
