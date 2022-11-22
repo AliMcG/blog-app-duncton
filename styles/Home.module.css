@@ -6,21 +6,10 @@
   align-items: center;
 }
 
-
-
-
-
 .title a {
   color: #0070f3;
   text-decoration: none;
 }
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
 
 
 .title,
@@ -45,7 +34,8 @@
 
 .card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -58,6 +48,9 @@
   height: 19.375rem;
   background-color: #F2F7FF;
 }
+.card:nth-child(odd) {
+  flex-direction: row-reverse;
+}
 
 .card:hover,
 .card:focus,
@@ -68,8 +61,9 @@
 
 .card h2 {
   margin: 0 0 1rem 0;
-  font-size: 1.5rem;
   color: black;
+  font-family: "Frank Ruhl Libre";
+  font-weight: bold;
 }
 
 .card p {
@@ -79,9 +73,7 @@
   color: rgb(79, 76, 76);
 }
 
-.card Image {
-  width: 2rem;
-} 
+
 
 
 

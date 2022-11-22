@@ -39,7 +39,7 @@ export default function Home({ posts }) {
             <a  className={styles.card}>
             <h2>{post.title}</h2>
             <p>{post.description.substring(0, 80)}...</p>
-            <Image src={post.image ? post.image : "/trees.jpg"} alt="Trees" width="1000" height="1000"/>
+            <Image src={post.image ? post.image : "/trees.jpg"} alt="Trees" width="475" height="275"/>
             </a>
             </Link>
            ))}

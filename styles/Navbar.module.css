@@ -29,3 +29,15 @@
 .navbar a:hover {
   color: #067A75;
 }
+
+.login {
+  position: relative;
+  top: 2rem;
+  left: 2rem;
+  color: white;
+  font-family: "Montserrat";
+  padding: 0.45rem 1rem;
+  background-color: #067A75;
+  border-radius: 10%;
+  font-size: large;
+}

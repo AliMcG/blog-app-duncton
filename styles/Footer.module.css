@@ -17,10 +17,11 @@
 
 /* To make the whole footer and icons sticky to the page bottom
 Not sure if this is part of the design or not? */
-.sticky {
+
+/* .sticky {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-}
+} */
