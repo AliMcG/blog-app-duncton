@@ -1,14 +1,11 @@
-import Link from 'next/link';
+import styles from "../styles/Home.module.css";
 
 function About() {
-  return ( <>
-  <main>
-    <h3>About info will go here</h3>
-    <h4>
-        <Link href="/">Back to home</Link>
-      </h4>
-      </main>
-  </> );
+  return (
+    <article className={styles.container} style={{backgroundColor: "#F2F7FF", marginTop: "1rem"}}>
+      <h3>About info will go here</h3>
+    </article>
+  );
 }
 
 export default About;

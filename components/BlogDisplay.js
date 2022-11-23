@@ -5,7 +5,7 @@ import Image from 'next/image'
 function BlogDisplay({post}) {
   return ( <>
     <div >
-    <Link href={"/posts/" + post.id} key={post.id} >
+    <Link href={"/posts/" + post.id} >
             <a  className={styles.card}>
             <article>
             <h2>{post.title}</h2>

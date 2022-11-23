@@ -1,13 +1,12 @@
-import Link from 'next/link';
+import styles from "../styles/Home.module.css";
 
 // Have contact details for how to get in touch
 function Contact() {
-  return ( <>
-    <h3>Contact details will go here</h3>
-    <h4>
-        <Link href="/">Back to home</Link>
-      </h4>
-  </> );
+  return (
+    <article className={styles.container} style={{backgroundColor: "#F2F7FF", marginTop: "1rem"}}>
+      <h3>Contact details will go here</h3>
+    </article>
+  );
 }
 
 export default Contact;

@@ -1,4 +1,4 @@
-.card {
+/* .card {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -10,37 +10,40 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   /* transition: color 0.15s ease, border-color 0.15s ease; */
-  width: 62.5rem;
+  /* width: 62.5rem;
   height: 19.375rem;
   background-color: #F2F7FF;
-}
-.card:nth-child(odd) {
-  flex-direction: row-reverse;
-}
+} */
 
-.card:nth-child(odd) article {
-  background-color: red;
-  position: relative;
-  right: 12rem;
-}
 
-.card:hover,
+/* .card:hover,
 .card:focus,
 .card:active {
   color: #CFE1FF;
   border-color: #CFE1FF;
-}
+} */
 
-.card h2 {
+/* .card h2 {
   margin: 0 0 1rem 0;
   color: black;
   font-family: "Frank Ruhl Libre";
   font-weight: bold;
-}
+} */
 
-.card p {
+/* .card p {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
   color: rgb(79, 76, 76);
-}
+} */
+
+/* .card:nth-child(odd) {
+  flex-direction: row-reverse;
+} */
+
+/* .card:nth-child(odd) article {
+  background-color: red;
+  position: relative;
+  /* flex-direction: row-reverse; */
+  /* right: 12rem; */
+/* }   */
