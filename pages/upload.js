@@ -4,7 +4,8 @@
 // import awsExports from "../src/aws-exports";
 import { useState } from "react";
 import BlogForm from "../components/Form";
-import style from "../styles/UploadPage.module.css"
+import styles from "../styles/UploadPage.module.css";
+
 // import { API, graphqlOperation } from "aws-amplify";
 // import { createTodo } from "../src/graphql/mutations";
 // Amplify.configure(awsExports);
@@ -45,9 +46,9 @@ function AddNewBlog() {
   }
 
   return (
-    <>
-        <h1>Write a new blog entry</h1>
-        <form onSubmit={handleSubmit}>
+    <main className={styles.title}>
+        <h1 >Write a new blog entry</h1>
+        {/* <form onSubmit={handleSubmit}> */}
           {/* <input
             type="text"
             name="title"
@@ -78,9 +79,9 @@ function AddNewBlog() {
           </label> */}
           
           {/* <input type="submit" value="Submit" /> */}
-        </form>
+        {/* </form> */}
         <BlogForm />
-    </>
+    </main>
   );
 }
 

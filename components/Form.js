@@ -5,9 +5,27 @@ import { Form, Input, Button, Upload } from "antd";
 const { TextArea } = Input;
 
 const BlogForm = () => {
+
+
+  //Function that returns a promise to read the file
+const reader = (file) => {
+  return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.onload = () => resolve(fileReader.result);
+      fileReader.readAsDataURL(file);
+  });
+}
+const readFile = (file) => {
+  reader(file).then(result => console.log(result));
+}
+
+  const handleFormData = (formValues) => {
+    console.log(formValues)
+  }
+
   return (
     <>
-      <Form
+      <Form label="New Blog"
         labelCol={{
           span: 4,
         }}
@@ -16,23 +34,26 @@ const BlogForm = () => {
         }}
         layout="horizontal"
         // onValuesChange={onFormLayoutChange}
+        onFinish={handleFormData}
         // disabled={componentDisabled}
       >
-        <Form.Item label="Title">
+        <Form.Item label="Title" name="title">
           <Input 
+            style={{ width: 400 }}
             name="title"
             placeholder="Title..."
           />
         </Form.Item>
-        <Form.Item label="Content">
+        <Form.Item label="Content" name="content">
           <TextArea 
+          style={{ width: 800 }}
           rows={6}
           name="description"
             placeholder="Content..."/>
         </Form.Item>
 
         <Form.Item label="Upload" valuePropName="fileList">
-          <Upload action="/upload.do" listType="picture-card">
+          <Upload action={readFile} listType="picture-card">
             <div>
               <PlusOutlined />
               <div
@@ -46,7 +67,7 @@ const BlogForm = () => {
           </Upload>
         </Form.Item>
         <Form.Item label>
-          <Button>Submit</Button>
+          <Button type="primary" htmlType="submit">Submit</Button>
         </Form.Item>
       </Form>
     </>
