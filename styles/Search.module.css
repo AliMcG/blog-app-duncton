@@ -1,0 +1,11 @@
+.search {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  /* left: 50rem; */
+  color: white;
+  font-family: "Montserrat";
+  
+  border-radius: 10%;
+  font-size: large;
+}

@@ -1,48 +1,32 @@
-import PostCard from "../components/PostCard";
-import Link from "next/link";
+import BlogDisplay from "../components/BlogDisplay";
 import styles from "../styles/Home.module.css";
-import { API } from 'aws-amplify';
+import testData from "../Data/testPostData";
+import Link from "next/link";
 import Image from 'next/image'
-import { listTodos } from "../src/graphql/queries";
-
-// const listPosts = []
-// fetches the data and returns the "props" that available in context for this page
-export const getStaticProps = async ()=> {
-  const data = await API.graphql({ query: listTodos });
-  // // const data = await res.json()
-  // console.log(data.data.listTodos.items)
-  return {
-    props: { posts: data.data.listTodos.items }
-  }
-}
-
 // import { API, graphqlOperation } from 'aws-amplify';
+// import { listTodos } from "../src/graphql/queries";
 
-// const oneTodo = await API.graphql(
-//   graphqlOperation(queries.getTodo, { id: 'some id' })
 
-// Can sort the data to show the 10 most recent posts here on home page?
+// fetches the data and returns the "props" that available in context for this page
+export const getStaticProps = async () => {
+  // const data = await API.graphql({ query: listTodos }); || await API.graphql(
+  // graphqlOperation(queries.getTodo, { id: 'some id' })
+
+  // const data = await res.json()
+  return {
+    props: { posts: testData },
+  };
+};
 
 // main page it shows post data with a substring for the post.text
 
-export default function Home({ posts}) {
-
-  // console.log(posts)
+export default function Home({ posts }) {
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        
-         
-           {posts.map(post => (
-            <Link href={"/posts/" + post.id} key={post.id} >
-            <a  className={styles.card}>
-            <h2>{post.title}</h2>
-            <p>{post.description.substring(0, 80)}...</p>
-            <Image src="/trees.jpg" alt="Trees" width="475" height="275"/>
-            </a>
-            </Link>
-           ))}
-        
+      <main >
+        {posts.map((post, index) => (
+          <BlogDisplay post={post} key={index} />
+        ))}
       </main>
     </div>
   );

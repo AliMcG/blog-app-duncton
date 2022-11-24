@@ -1,15 +1,31 @@
 .footer {
   display: flex;
   flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  color: rgb(105, 104, 104);
 }
 
-.footer a {
+.icons {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  margin-top: 1rem;
+}
+
+.icons a {
+  margin: 0 1rem 0 1rem;
+}
+
+/* To make the whole footer and icons sticky to the page bottom
+Not sure if this is part of the design or not? */
+
+.sticky {
+  
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  background-color: #fff;
 }
