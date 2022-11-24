@@ -1,5 +1,6 @@
 import Link from "next/link"
-import styles from "../../styles/Posts.module.css";
+import Image from "next/image";
+import styles from "../../styles/Single.module.css";
 // import { API } from 'aws-amplify';
 // import { listPosts } from "../src/graphql/queries"; 
 import testData from "../../Data/testPostData";
@@ -22,10 +23,18 @@ function Posts({ posts }) {
     <h1>Blog Posts</h1>
     {posts.map(post => (
             <Link href={"/posts/" + post.id} key={post.id} >
-            <a  className={styles.card}>
-            <h2>{post.title}</h2>
-            <p>{post.description}</p>
-            </a>
+            <div className={styles.single}>
+      <Image
+        src={post.image ? post.image : "/trees.jpg"}
+        alt="Trees"
+        width="375"
+        height="275"
+      />
+      <article>
+        <h2>{post.title}</h2>
+        <p>{post.description}</p>
+      </article>
+    </div>
             </Link>
     ))}
   </div> );
