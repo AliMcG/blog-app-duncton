@@ -3,6 +3,8 @@
 // import "@aws-amplify/ui-react/styles.css";
 // import awsExports from "../src/aws-exports";
 import { useState } from "react";
+import BlogForm from "../components/Form";
+import style from "../styles/UploadPage.module.css"
 // import { API, graphqlOperation } from "aws-amplify";
 // import { createTodo } from "../src/graphql/mutations";
 // Amplify.configure(awsExports);
@@ -15,7 +17,7 @@ const initialState = {
 };
 
 // { signOut, user }
-function Upload() {
+function AddNewBlog() {
   
   const [blog, setBlog] = useState(initialState)
   const [imageFile, setImageFile] = useState("");
@@ -44,32 +46,27 @@ function Upload() {
 
   return (
     <>
-      <>
-        <h1>Hello username</h1>
-        <button >Sign out</button>
-        <br></br>
         <h1>Write a new blog entry</h1>
         <form onSubmit={handleSubmit}>
-          <input
+          {/* <input
             type="text"
             name="title"
             placeholder="Title..."
             value={blog.title}
             onChange={handleChange}
-          />
+          /> */}
 
-          <br></br>
 
-          <textarea
+          {/* <textarea
             name="description"
             placeholder="Content..."
             value={blog.description}
             rows="4"
             cols="50"
             onChange={handleChange}
-          />
-          <br></br>
-          <label>
+          /> */}
+          
+          {/* <label>
             Add Image:
             <br></br>
             <input
@@ -78,15 +75,14 @@ function Upload() {
               value={imageFile}
               onChange={(e) => setImageFile(e.target.value)}
             />
-          </label>
-          <br></br>
-          <input type="submit" value="Submit" />
+          </label> */}
+          
+          {/* <input type="submit" value="Submit" /> */}
         </form>
-        
-      </>
+        <BlogForm />
     </>
   );
 }
 
 // export default Upl
-export default Upload;
+export default AddNewBlog;
