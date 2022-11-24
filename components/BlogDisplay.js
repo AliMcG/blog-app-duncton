@@ -1,23 +1,27 @@
-import styles from "../styles/BlogDisplay.module.css"
+import styles from "../styles/BlogDisplay.module.css";
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
 
-function BlogDisplay({post}) {
-  return ( <>
-    <div >
-    <Link href={"/posts/" + post.id} >
-            <a  className={styles.card}>
+function BlogDisplay({ post }) {
+  return (
+      
+        <Link href={"/posts/" + post.id}>
+          <a className={styles.card}>
             <article>
-            <h2>{post.title}</h2>
-            <p>{post.description.substring(0, 80)}...</p>
+              <h2>{post.title}</h2>
+              <p>{post.description.substring(0, 80)}...</p>
             </article>
-            
-            <Image src={post.image ? post.image : "/trees.jpg"} alt="Trees" width="375" height="275"/>
-            </a>
-            </Link>
-           
-          </div>
-  </> );
+
+            <Image
+              src={post.image ? post.image : "/trees.jpg"}
+              alt="Trees"
+              width="475"
+              height="275"
+            />
+          </a>
+        </Link>
+      
+  );
 }
 
 export default BlogDisplay;
