@@ -1,0 +1,12 @@
+.title {
+  display: flex;
+  flex-direction: column;
+  background-color: #F2F7FF;
+  justify-content: right;
+  align-items: stretch;
+  
+}
+
+.title h1 {
+  text-align: center;
+}

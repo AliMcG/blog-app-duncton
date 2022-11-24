@@ -51,7 +51,7 @@ function Navbar() {
           <a>CONTACT</a>
         </Link>{" "}
         {user && <Link href="/upload">
-          <a>(upload)</a>
+          <a>(Add a New Entry)</a>
         </Link>}
       </nav>
     </>

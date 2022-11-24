@@ -20,12 +20,12 @@
 Not sure if this is part of the design or not? */
 
 .sticky {
-  
-  position: fixed;
+  margin-top: auto;
+  /* position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 0; */
   width: 100%;
   text-align: center;
-  z-index: 1;
+  /* z-index: 1; */
   background-color: #fff;
 }
