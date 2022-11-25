@@ -1,45 +1,45 @@
 import React, { useState } from "react";
 import "@ant-design/icons";
 import { Input, Space } from "antd";
-import styles from "../styles/Search.module.css"
+import styles from "../styles/Search.module.css";
 const { Search } = Input;
-import data from "../Data/testPostData.js"
+import { useRouter } from "next/router";
+import data from "../Data/testPostData.js";
 
+function SearchBar() {
+  const [search, setSearch] = useState("");
+  const router = useRouter();
 
-
- // Called upon change of search input
-//  const searchUsers = (e) => {
-//   setSearch(e.target.value)
-//   filterUsers(e.target.value)
-// }
-
-function SearchBar(){
-  const [search, setSearch] = useState("")
-
-// href={"/posts/" + post.id}
-function onSearch() {
-  console.log(search)
-  console.log(data[0].title)
-  const searchedBlog = data.filter(blog => {
-    return blog.title.toLowerCase().includes(search.toLowerCase()) || blog.description.toLowerCase().includes(search.toLowerCase())
-  })
-  console.log(searchedBlog)
-}
+  // filters the blogData by title or content to include the search bar string
+  function onSearch() {
+    const searchedBlog = data.filter((blog) => {
+      return (
+        blog.title.toLowerCase().includes(search.toLowerCase()) ||
+        blog.description.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    // passes the 1st returned blog entry that matches the search string to dynamic routing
+    // in /pages/:id using the searchedBlog.id as params.
+    const href = `/posts/${searchedBlog[0].id}`;
+    // router.push pushes the user to the new page
+    router.push(href);
+  }
 
   return (
     <Space direction="vertical" className={styles.search}>
-    <Search
-      placeholder="Search..."
-      allowClear
-      onSearch={onSearch}
-      onChange={(e) => {setSearch(e.target.value)}}
-      style={{
-        width: 200,
-      }}
-    />
-  </Space>
-  )
-} 
-  
+      <Search
+        placeholder="Search..."
+        allowClear
+        onSearch={onSearch}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+        style={{
+          width: 200,
+        }}
+      />
+    </Space>
+  );
+}
 
 export default SearchBar;
