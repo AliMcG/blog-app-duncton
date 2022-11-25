@@ -3,7 +3,7 @@
 // import "@aws-amplify/ui-react/styles.css";
 // import awsExports from "../src/aws-exports";
 import { useState } from "react";
-import BlogForm from "../components/Form";
+import BlogForm from "../components/BlogForm";
 import styles from "../styles/UploadPage.module.css";
 
 // import { API, graphqlOperation } from "aws-amplify";
@@ -21,7 +21,7 @@ const initialState = {
 function AddNewBlog() {
   
   const [blog, setBlog] = useState(initialState)
-  const [imageFile, setImageFile] = useState("");
+  const [imageFile, setImageFile] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
