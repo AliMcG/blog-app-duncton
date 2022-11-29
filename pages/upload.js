@@ -2,7 +2,7 @@
 // import { withAuthenticator } from "@aws-amplify/ui-react";
 // import "@aws-amplify/ui-react/styles.css";
 // import awsExports from "../src/aws-exports";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import BlogForm from "../components/BlogForm";
 import Image from "next/image";
 import styles from "../styles/UploadPage.module.css";
@@ -16,9 +16,13 @@ const initialState = {
   description: "",
   image: "",
 };
+// sets the file input default to these image.files.types
+const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
-// { signOut, user }
 function AddNewBlog() {
+  const [file, setFile] = useState(null);
+  const [fileDataURL, setFileDataURL] = useState(false);
+
   const [state, dispatch] = useReducer(
     (state, action) => ({
       ...state,
@@ -26,48 +30,43 @@ function AddNewBlog() {
     }),
     initialState
   );
-  // const [blog, setBlog] = useState(initialState)
-  // const [imageFile, setImageFile] = useState("");
 
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  const reader = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.onload = () => resolve(fileReader.result);
+  const changeHandler = (e) => {
+    const file = e.target.files[0];
+    if (!file.type.match(imageMimeType)) {
+      alert("Image mime type is not valid");
+      return;
+    }
+    setFile(file);
+  };
+
+  useEffect(() => {
+    let fileReader,
+      isCancel = false;
+    if (file) {
+      fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        const { result } = e.target;
+        console.log(result);
+        if (result && !isCancel) {
+          dispatch({ image: result });
+          setFileDataURL(true);
+        }
+      };
       fileReader.readAsDataURL(file);
-    });
-  };
-  const readFile = (file) => {
-    reader(file).then((result) => console.log("From reader", result));
-  };
-  const readBase = (file) => {
-    toBase64(file).then((result) => console.log("This is Base64", result));
-  };
+    }
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+    };
+  }, [file]);
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     console.log("This is handleSubmit", state);
-    // await API.graphql(graphqlOperation(createTodo, { input: blog }));
-    // setBlog(initialState)
     dispatch(initialState);
-  }
-
-  function handleChange(event) {
-    // destructs the event.target
-    const { name, value } = event.target;
-
-    // using prevValue of the state object, the spread operator to spread then add the new value.
-    // [name] reads the name from the input tag
-    setBlog((prevValue) => {
-      return { ...prevValue, [name]: value };
-    });
   }
 
   return (
@@ -79,7 +78,6 @@ function AddNewBlog() {
           name="title"
           placeholder="Title..."
           value={state.title}
-          // onChange={handleChange}
           onChange={(e) => dispatch({ title: e.target.value })}
         />
         <textarea
@@ -88,28 +86,63 @@ function AddNewBlog() {
           value={state.description}
           rows="4"
           cols="50"
-          // onChange={handleChange}
           onChange={(e) => dispatch({ description: e.target.value })}
         />
         <label>
           Add Image:
           <br></br>
-          <input
-            type="file"
-            name="image"
-            value={state.image}
-            // onChange={(e) => setImageFile(e.target.value)}
-            onChange={(e) => dispatch({ image: readBase(e.target.value) })}
-          />
+          <input type="file" name="image" onChange={changeHandler} />
         </label>
 
         <input type="submit" value="Submit" />
       </form>
-      {/* <BlogForm /> */}
-      <Image src={upLoadedFile} alt="upload image" width="200" height="200" />
+
+      {fileDataURL ? (
+        <p className="img-preview-wrapper">
+          {
+            <Image
+              src={state.image}
+              alt="upload image"
+              width="200"
+              height="200"
+            />
+          }
+        </p>
+      ) : null}
     </main>
   );
 }
 
-// export default Upl
 export default AddNewBlog;
+
+// function handleChange(event) {
+//   // destructs the event.target
+//   const { name, value } = event.target;
+
+//   // using prevValue of the state object, the spread operator to spread then add the new value.
+//   // [name] reads the name from the input tag
+//   setBlog((prevValue) => {
+//     return { ...prevValue, [name]: value };
+//   });
+// }
+
+// const toBase64 = (file) =>
+//     new Promise((resolve, reject) => {
+//       const reader = new FileReader();
+//       reader.readAsDataURL(file);
+//       reader.onload = () => resolve(reader.result);
+//       reader.onerror = (error) => reject(error);
+//     });
+//   const reader = (file) => {
+//     return new Promise((resolve, reject) => {
+//       const fileReader = new FileReader();
+//       fileReader.onload = () => resolve(fileReader.result);
+//       fileReader.readAsDataURL(file);
+//     });
+//   };
+//   const readFile = (file) => {
+//     reader(file).then((result) => console.log("From reader", result));
+//   };
+//   const readBase = (file) => {
+//     toBase64(file).then((result) => console.log("This is Base64", result));
+//   };
