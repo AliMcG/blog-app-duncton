@@ -21,16 +21,19 @@ const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 function AddNewBlog() {
   const [file, setFile] = useState(null);
-  const [fileDataURL, setFileDataURL] = useState(false);
+  const [filePreview, setFilePreview] = useState(false);
 
   const [state, dispatch] = useReducer(
+    // deconstructs the object from the dispatch function. 
     (state, action) => ({
       ...state,
       ...action,
     }),
     initialState
   );
-
+  
+  // destructs the event which is an array to get the file object.
+  // Checks that the file format is correct.
   const changeHandler = (e) => {
     const file = e.target.files[0];
     if (!file.type.match(imageMimeType)) {
@@ -43,18 +46,24 @@ function AddNewBlog() {
   useEffect(() => {
     let fileReader,
       isCancel = false;
+    // creates a new FileReader to read the uploaded file.
+    // fileReader is async by default
+    // fileReader.onload happens automatically after async fileReader.readAsDataURL has returned the file.
     if (file) {
       fileReader = new FileReader();
+      // the event of fileReader is the return of the async fileReader.readAsDataURL.
       fileReader.onload = (e) => {
         const { result } = e.target;
-        console.log(result);
         if (result && !isCancel) {
+          // adds the data:url of uploaded file to state.image
           dispatch({ image: result });
-          setFileDataURL(true);
+          // boolean switch to control the image preview div in component render.
+          setFilePreview(true);
         }
       };
       fileReader.readAsDataURL(file);
     }
+    // return cleanup function to clear the current useEffect and reset for a new file upload.
     return () => {
       isCancel = true;
       if (fileReader && fileReader.readyState === 1) {
@@ -65,7 +74,9 @@ function AddNewBlog() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    // onSubmit will POST to the database
     console.log("This is handleSubmit", state);
+    // resets the form data to empty stings
     dispatch(initialState);
   }
 
@@ -97,7 +108,7 @@ function AddNewBlog() {
         <input type="submit" value="Submit" />
       </form>
 
-      {fileDataURL ? (
+      {filePreview ? (
         <p className="img-preview-wrapper">
           {
             <Image
@@ -114,35 +125,3 @@ function AddNewBlog() {
 }
 
 export default AddNewBlog;
-
-// function handleChange(event) {
-//   // destructs the event.target
-//   const { name, value } = event.target;
-
-//   // using prevValue of the state object, the spread operator to spread then add the new value.
-//   // [name] reads the name from the input tag
-//   setBlog((prevValue) => {
-//     return { ...prevValue, [name]: value };
-//   });
-// }
-
-// const toBase64 = (file) =>
-//     new Promise((resolve, reject) => {
-//       const reader = new FileReader();
-//       reader.readAsDataURL(file);
-//       reader.onload = () => resolve(reader.result);
-//       reader.onerror = (error) => reject(error);
-//     });
-//   const reader = (file) => {
-//     return new Promise((resolve, reject) => {
-//       const fileReader = new FileReader();
-//       fileReader.onload = () => resolve(fileReader.result);
-//       fileReader.readAsDataURL(file);
-//     });
-//   };
-//   const readFile = (file) => {
-//     reader(file).then((result) => console.log("From reader", result));
-//   };
-//   const readBase = (file) => {
-//     toBase64(file).then((result) => console.log("This is Base64", result));
-//   };
