@@ -41,6 +41,8 @@ function AddNewBlog() {
       return;
     }
     setFile(file);
+    // to clear input field
+    e.target.value = null;
   };
 
   useEffect(() => {
@@ -78,6 +80,8 @@ function AddNewBlog() {
     console.log("This is handleSubmit", state);
     // resets the form data to empty stings
     dispatch(initialState);
+    // to remove preview after submit
+    setFilePreview(false);
   }
 
   return (
