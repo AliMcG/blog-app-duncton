@@ -6,6 +6,8 @@ import { useState, useReducer, useEffect } from "react";
 import BlogForm from "../components/BlogForm";
 import Image from "next/image";
 import styles from "../styles/UploadPage.module.css";
+import { Editor } from "@tinymce/tinymce-react";
+import { Markup } from 'interweave';
 
 // import { API, graphqlOperation } from "aws-amplify";
 // import { createTodo } from "../src/graphql/mutations";
@@ -17,11 +19,13 @@ const initialState = {
   image: "",
 };
 // sets the file input default to these image.files.types
+ // Multipurpose Internet Mail Extensions
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 function AddNewBlog() {
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState(false);
+  const [testText, setTestText] = useState("")
 
   const [state, dispatch] = useReducer(
     // deconstructs the object from the dispatch function. 
@@ -82,6 +86,7 @@ function AddNewBlog() {
     dispatch(initialState);
     // to remove preview after submit
     setFilePreview(false);
+    console.log("Test text", testText)
   }
 
   return (
@@ -95,6 +100,13 @@ function AddNewBlog() {
           value={state.title}
           onChange={(e) => dispatch({ title: e.target.value })}
         />
+        {/* a fully editable text area */}
+        <Editor 
+          // initialValue='<p>Once upon a time...</p>'
+          value={testText}
+          init={{height: 400, width: 800, menubar: false}}
+          onEditorChange={(e) => setTestText(e)}
+          />
         <textarea
           name="description"
           placeholder="Content..."
@@ -123,6 +135,20 @@ function AddNewBlog() {
             />
           }
         </p>
+      ) : null}
+      {testText ? (
+        
+        <div>
+        {/* this shows the the html tags and content from the Rich Text input */}
+        <textarea
+          name="output"
+          value={testText}
+          rows="4"
+          cols="50"
+        />
+        {/* This show the text only from the Rich Text input */}
+        <Markup content={testText} />
+        </div>
       ) : null}
     </main>
   );
