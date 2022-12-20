@@ -16,17 +16,17 @@ function Footer() {
           {/* to open link in a new tab use target="_blank" 
       and as a security measure use rel="..." to stop malicious reopening of the tab */}
           <a target="_blank" rel="noopener noreferrer">
-            <Image src={linkedIn} width="38" height="38" alt="LinkedIn-logo" />
+            <Image src={linkedIn} width="40" height="40" alt="LinkedIn-logo" />
           </a>
         </Link>
         <Link href="https://harryduncton.substack.com">
           <a target="_blank" rel="noopener noreferrer">
-            <Image src={subStack} width="38" height="38" alt="LinkedIn-logo" />
+            <Image src={subStack} width="40" height="40" alt="LinkedIn-logo" />
           </a>
         </Link>
         <Link href="https://twitter.com/lethalsturgeon">
           <a target="_blank" rel="noopener noreferrer">
-            <Image src={twitter} width="38" height="38" alt="LinkedIn-logo" />
+            <Image src={twitter} width="40" height="40" alt="LinkedIn-logo" />
           </a>
         </Link>
       </article>

@@ -4,12 +4,20 @@
   justify-content: center;
   align-items: center;
   color: rgb(105, 104, 104);
+  position: absolute;
+  left: 2.5rem;
+  bottom: 0.1rem;
+}
+.footer p {
+  font-weight: 300;
+  font-family: inherit;
 }
 
 .icons {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 3.375rem;
+  margin-bottom: 0.9375rem;
 }
 
 .icons a {
@@ -21,6 +29,7 @@ Not sure if this is part of the design or not? */
 
 .sticky {
   margin-top: auto;
+  position: relative;
   /* position: fixed;
   left: 0;
   bottom: 0; */

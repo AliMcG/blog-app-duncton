@@ -5,19 +5,20 @@
   justify-content: center;
   height: 100%;
   color: black;
-  font-size: 2rem;
+  font-size: 1.125rem;
   font-family: 'Montserrat', cursive;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
+  margin-bottom: 3.3125rem;
 }
 
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 3.3125rem;
 }
 
 .navbar a {

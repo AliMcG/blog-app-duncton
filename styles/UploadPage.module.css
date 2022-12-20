@@ -11,10 +11,10 @@
   text-align: center;
 } */
 
-/* .title form {
+.title form {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   max-width: 20rem;
-}  */
+} 

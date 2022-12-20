@@ -4,7 +4,7 @@ import Image from "next/image";
 import SearchBar from "./SearchBar";
 // import { createContext, useContext } from 'react';
 import { useState } from "react"
-import titleImage from "../public/harry-duncton-header_trans_.png";
+import titleImage from "../public/harry-new-header.png";
 
 function Navbar() {
   
@@ -18,6 +18,7 @@ function Navbar() {
     alignSelf: "center",
     inset: "1rem",
     position: "absolute",
+    margin: "1rem"
     // // top: "50%",
     // left: "50%",
     // right: "50%",
@@ -33,8 +34,8 @@ function Navbar() {
           src={titleImage}
           style={headerStyle}
           alt="Harry Duncton"
-          width="1000"
-          height="200"
+          width="700"
+          height="50"
         />
         
       </header>

@@ -1,21 +1,18 @@
 import "../styles/globals.css";
 import {Layout} from "../components/Layout";
-// import { Amplify, Auth } from 'aws-amplify';
-// import awsconfig from './aws-exports';
-// Amplify.configure(awsconfig);
+import { Montserrat } from '@next/font/google'
 
+const montserrat = Montserrat({ subsets: ['latin'] })
 
-// import { withAuthenticator } from '@aws-amplify/ui-react';
-// import '@aws-amplify/ui-react/styles.css';
-
-// import awsExports from '../src/aws-exports';
-// Amplify.configure(awsExports);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <main className={montserrat.className}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </main>
+    
   );
 }
 
