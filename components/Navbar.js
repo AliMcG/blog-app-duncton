@@ -43,16 +43,16 @@ function Navbar() {
       <nav className={styles.navbar}>
         
         <Link href="/">
-          <a>HOME</a>
+          OME
         </Link>{" "}
         <Link href="/about">
-          <a>ABOUT</a>
+          BOUT
         </Link>{" "}
         <Link href="/contact">
-          <a>CONTACT</a>
+          ONTACT
         </Link>{" "}
         {user && <Link href="/upload">
-          <a>(Add a New Entry)</a>
+          Add a New Entry
         </Link>}
       </nav>
     </>
