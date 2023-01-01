@@ -24,9 +24,12 @@ export default function Home({ posts }) {
   return (
     <div className={styles.container}>
       <main >
-        {posts.map((post, index) => (
-          <BlogDisplay post={post} key={index} />
+      <div className="">
+      {posts.map((post, index) => (
+          <BlogDisplay post={post} key={index} child={index + 1}/>
         ))}
+      </div>
+        
       </main>
     </div>
   );

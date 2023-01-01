@@ -15,10 +15,10 @@ function Navbar() {
     setUser(preValue => !preValue)
   }
   const headerStyle = {
-    alignSelf: "center",
-    inset: "1rem",
-    position: "absolute",
-    margin: "1rem"
+    // alignSelf: "center",
+    // inset: "1rem",
+    // position: "absolute",
+    // margin: "1rem"
     // // top: "50%",
     // left: "50%",
     // right: "50%",
@@ -43,13 +43,13 @@ function Navbar() {
       <nav className={styles.navbar}>
         
         <Link href="/">
-          OME
+          HOME
         </Link>{" "}
         <Link href="/about">
-          BOUT
+          ABOUT
         </Link>{" "}
         <Link href="/contact">
-          ONTACT
+          CONTACT
         </Link>{" "}
         {user && <Link href="/upload">
           Add a New Entry
