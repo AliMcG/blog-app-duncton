@@ -10,12 +10,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
-    "@aws-amplify/ui-react": "^3.6.0",
-    "@aws-sdk/eventstream-codec": "^3.190.0",
     "@next/font": "^13.0.7",
     "@tinymce/tinymce-react": "^4.2.0",
     "antd": "^5.0.1",
-    "aws-amplify": "^4.3.43",
     "interweave": "^13.0.0",
     "mongoose": "^6.7.5",
     "next": "^13.0.7",
