@@ -11,10 +11,12 @@ import Image from 'next/image'
 export const getStaticProps = async () => {
   // const data = await API.graphql({ query: listTodos }); || await API.graphql(
   // graphqlOperation(queries.getTodo, { id: 'some id' })
-
+  const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
+  const data = await response.json()
+ 
   // const data = await res.json()
   return {
-    props: { posts: testData },
+    props: { posts: data },
   };
 };
 

@@ -1,7 +1,3 @@
-// import { Amplify, Auth } from "aws-amplify";
-// import { withAuthenticator } from "@aws-amplify/ui-react";
-// import "@aws-amplify/ui-react/styles.css";
-// import awsExports from "../src/aws-exports";
 import { useState, useReducer, useEffect } from "react";
 import BlogForm from "../components/BlogForm";
 import Image from "next/image";
@@ -9,9 +5,6 @@ import styles from "../styles/UploadPage.module.css";
 import { Editor } from "@tinymce/tinymce-react";
 import { Markup } from 'interweave';
 
-// import { API, graphqlOperation } from "aws-amplify";
-// import { createTodo } from "../src/graphql/mutations";
-// Amplify.configure(awsExports);
 
 const initialState = {
   title: "",
@@ -62,6 +55,7 @@ function AddNewBlog() {
         const { result } = e.target;
         if (result && !isCancel) {
           // adds the data:url of uploaded file to state.image
+          console.log(result)
           dispatch({ image: result });
           // boolean switch to control the image preview div in component render.
           setFilePreview(true);
@@ -82,6 +76,16 @@ function AddNewBlog() {
     e.preventDefault();
     // onSubmit will POST to the database
     console.log("This is handleSubmit", state);
+    const res = await fetch("http://localhost:4000/api/blogs/blogs-data", {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(state)
+    })
+    const result = await res.json()
+    console.log(result)
+
     // resets the form data to empty stings
     dispatch(initialState);
     // to remove preview after submit
@@ -103,18 +107,19 @@ function AddNewBlog() {
         {/* a fully editable text area */}
         <Editor 
           // initialValue='<p>Once upon a time...</p>'
-          value={testText}
+          name="description"
+          value={state.description}
           init={{height: 400, width: 800, menubar: false}}
-          onEditorChange={(e) => setTestText(e)}
+          onEditorChange={(e) => dispatch({ description: e })}
           />
-        <textarea
+        {/* <textarea
           name="description"
           placeholder="Content..."
           value={state.description}
           rows="4"
           cols="50"
           onChange={(e) => dispatch({ description: e.target.value })}
-        />
+        /> */}
         <label>
           Add Image:
           <br></br>

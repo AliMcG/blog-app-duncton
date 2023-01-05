@@ -11,7 +11,7 @@ const BlogSchema = new mongoose.Schema({
   description: {
     /* Blog content */
     type: String,
-    required: [true, "Please provide a title for this Blog."],
+    required: [true, "Please provide a description for this Blog."],
   },
   image: {
     /* image-Url to blog image upload in base64*/

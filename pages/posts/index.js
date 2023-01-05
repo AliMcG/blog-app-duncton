@@ -8,12 +8,13 @@ import testData from "../../Data/testPostData";
 
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async ()=> {
-  
+  const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
+  const data = await response.json()
   // await API.graphql({ query: listPosts });
   // // const data = await res.json()
   // console.log(data.data.listPosts.items)
   return {
-    props: { posts: testData }
+    props: { posts: data }
   }
 }
 
@@ -22,10 +23,10 @@ function Posts({ posts }) {
   return ( <div >
     <h1>Blog Posts</h1>
     {posts.map(post => (
-            <Link href={"/posts/" + post.id} key={post.id} >
+            <Link href={"/posts/" + post._id} key={post._id} >
             <div className={styles.single}>
       <Image
-        src={post.image ? post.image : "/trees.jpg"}
+        unoptimized src={post.image ? post.image : "/trees.jpg"}
         alt="Trees"
         width="375"
         height="275"
