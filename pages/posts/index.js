@@ -1,8 +1,7 @@
 import Link from "next/link"
 import Image from "next/image";
 import styles from "../../styles/Single.module.css";
-// import { API } from 'aws-amplify';
-// import { listPosts } from "../src/graphql/queries"; 
+
 import testData from "../../Data/testPostData";
 
 
