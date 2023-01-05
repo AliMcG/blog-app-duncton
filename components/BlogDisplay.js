@@ -10,7 +10,7 @@ function BlogDisplay({ post, child }) {
     <section className={child % 2 === 0 ? styles.card : styles.card1}>
     <article >
         <h2>{post.title}</h2>
-        <p>{post.description.substring(0, 80)}...</p>
+        {/* <p>{post.description.substring(0, 80)}...</p> */}
         <Markup content={post.description.substring(0, 90)} />
        
       </article>
