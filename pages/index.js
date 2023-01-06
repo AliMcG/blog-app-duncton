@@ -9,7 +9,7 @@ import Image from 'next/image'
 export const getStaticProps = async () => {
   
   // const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
-  const response = await fetch(`http://localhost:3000/api/blogs`)
+  const response = await fetch(`${process.env.VERCEL_URL}/api/blogs`)
  
   const data = await response.json()
   

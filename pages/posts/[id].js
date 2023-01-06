@@ -1,6 +1,7 @@
 import styles from "../../styles/Single.module.css";
 import testData from "../../Data/testPostData";
 import Image from "next/image";
+import { Markup } from 'interweave';
 
 
 export const getStaticPaths = async () => {
@@ -45,7 +46,8 @@ const BlogDetails = ({ post }) => {
       />
       <article>
         <h2>{post.title}</h2>
-        <p>{post.description}</p>
+        {/* <p>{post.description}</p> */}
+        <Markup content={post.description} />
       </article>
     </div>
   );
