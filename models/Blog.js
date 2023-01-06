@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 /* BlogSchema will correspond to a collection in your MongoDB database. */
-const BlogSchema = new mongoose.Schema({
+const blogsSchema = new mongoose.Schema({
   title: {
     /* The name of this Blog */
     type: String,
     required: [true, "Please provide a title for this Blog."],
-    maxlength: [60, "Name cannot be more than 60 characters"],
+    // maxlength: [60, "Name cannot be more than 60 characters"],
   },
   description: {
     /* Blog content */
@@ -18,6 +18,6 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide an image for this blog."],
   },
-});
+}, { timestamps: true});
 
-export default mongoose.models.Blog || mongoose.model("Blog", BlogSchema);
+export default mongoose.models.Blog || mongoose.model("Blogs", blogsSchema);

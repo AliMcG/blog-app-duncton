@@ -1,5 +1,8 @@
 import "../styles/globals.css";
 import {Layout} from "../components/Layout";
+import { polyfill } from 'interweave-ssr';
+
+polyfill();
 // import { Montserrat } from '@next/font/google'
 
 // const montserrat = Montserrat({ subsets: ['latin'] })

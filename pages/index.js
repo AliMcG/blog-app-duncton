@@ -3,20 +3,18 @@ import styles from "../styles/Home.module.css";
 import testData from "../Data/testPostData";
 import Link from "next/link";
 import Image from 'next/image'
-// import { API, graphqlOperation } from 'aws-amplify';
-// import { listTodos } from "../src/graphql/queries";
 
 
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async () => {
-  // const data = await API.graphql({ query: listTodos }); || await API.graphql(
-  // graphqlOperation(queries.getTodo, { id: 'some id' })
-  const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
-  const data = await response.json()
+  
+  // const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
+  const response = await fetch(`http://localhost:3000/api/blogs`)
  
-  // const data = await res.json()
+  const data = await response.json()
+  
   return {
-    props: { posts: data },
+    props: { posts: data.data },
   };
 };
 
