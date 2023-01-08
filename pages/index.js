@@ -1,8 +1,6 @@
 import BlogDisplay from "../components/BlogDisplay";
 import styles from "../styles/Home.module.css";
-import testData from "../Data/testPostData";
-import Link from "next/link";
-import Image from "next/image";
+
 
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async () => {

@@ -1,5 +1,5 @@
 import { useState, useReducer, useEffect } from "react";
-import BlogForm from "../components/BlogForm";
+
 import Image from "next/image";
 import styles from "../styles/UploadPage.module.css";
 import { Editor } from "@tinymce/tinymce-react";
