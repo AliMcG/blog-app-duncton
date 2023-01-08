@@ -5,12 +5,13 @@ import { Markup } from 'interweave';
 
 
 export const getStaticPaths = async () => {
-  // const data = await API.graphql({ query: listTodos });
+  
   const response = await fetch(process.env.BACKEND_URL)
   const data = await response.json()
-  // console.log(data)
+  
   // This creates dynamic url paths for each blog item
   const paths = data.map((post) => {
+    console.log(post._id)
     return {
       params: { id: post._id },
     };
@@ -39,7 +40,7 @@ const BlogDetails = ({ post }) => {
   return (
     <div className={styles.single}>
       <Image
-        unoptimized src={post.image ? post.image : "/trees.jpg"}
+        unoptimized src={post?.image ? post.image : "/trees.jpg"}
         alt="Trees"
         width="375"
         height="275"
