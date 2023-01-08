@@ -6,7 +6,7 @@ import { Markup } from 'interweave';
 
 export const getStaticPaths = async () => {
   // const data = await API.graphql({ query: listTodos });
-  const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
+  const response = await fetch(process.env.BACKEND_URL)
   const data = await response.json()
   // console.log(data)
   // This creates dynamic url paths for each blog item
@@ -26,7 +26,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.id;
   
-  const response = await fetch(`http://localhost:4000/api/blogs/blogs-data/${id}`)
+  const response = await fetch(process.env.BACKEND_URL + id)
   const data = await response.json()
   
   return {

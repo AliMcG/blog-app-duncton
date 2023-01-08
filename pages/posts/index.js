@@ -7,7 +7,7 @@ import testData from "../../Data/testPostData";
 
 // fetches the data and returns the "props" that available in context for this page
 export const getStaticProps = async ()=> {
-  const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
+  const response = await fetch(process.env.BACKEND_URL)
   const data = await response.json()
   // await API.graphql({ query: listPosts });
   // // const data = await res.json()

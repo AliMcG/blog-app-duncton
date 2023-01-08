@@ -76,7 +76,7 @@ function AddNewBlog() {
     e.preventDefault();
     // onSubmit will POST to the database
     console.log("This is handleSubmit", state);
-    const res = await fetch("http://localhost:4000/api/blogs/blogs-data", {
+    const res = await fetch(process.env.BACKEND_URL, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
