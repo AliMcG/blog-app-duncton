@@ -11,7 +11,7 @@ export const getStaticPaths = async () => {
   
   // This creates dynamic url paths for each blog item
   const paths = data.map((post) => {
-    console.log(post._id)
+    // console.log(post._id)
     return {
       params: { id: post._id },
     };
@@ -26,8 +26,9 @@ export const getStaticPaths = async () => {
 // Passes down the Blog by id to new pathage
 export const getStaticProps = async (context) => {
   const id = context.params.id;
+  console.log("id ", id)
   
-  const response = await fetch(process.env.BACKEND_URL + id)
+  const response = await fetch(process.env.BACKEND_URL + "/" + id)
   const data = await response.json()
   
   return {
