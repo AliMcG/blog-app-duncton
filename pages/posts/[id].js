@@ -30,7 +30,7 @@ export const getStaticProps = async (context) => {
   const data = await response.json()
   
   return {
-    props: { post: data[0] },
+    props: { post: data },
   };
 };
 
