@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 export const getStaticProps = async () => {
   // const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
   const response = await fetch(process.env.BACKEND_URL);
-  console.log("index.js", response.data);
+  console.log("index.js", response);
   const data = await response.json();
 
   return {

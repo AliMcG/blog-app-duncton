@@ -1,5 +1,5 @@
 import { useState, useReducer, useEffect } from "react";
-
+import axios from "axios";
 import Image from "next/image";
 import styles from "../styles/UploadPage.module.css";
 import { Editor } from "@tinymce/tinymce-react";
@@ -16,6 +16,7 @@ const initialState = {
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 function AddNewBlog() {
+  const url = process.env.BACKEND_URL
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState(false);
   const [testText, setTestText] = useState("")
@@ -55,7 +56,7 @@ function AddNewBlog() {
         const { result } = e.target;
         if (result && !isCancel) {
           // adds the data:url of uploaded file to state.image
-          console.log(result)
+          // console.log(result)
           dispatch({ image: result });
           // boolean switch to control the image preview div in component render.
           setFilePreview(true);
@@ -72,25 +73,78 @@ function AddNewBlog() {
     };
   }, [file]);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    // onSubmit will POST to the database
-    console.log("This is handleSubmit", state);
-    const res = await fetch(process.env.BACKEND_URL, {
+  const testObject = {
+    title: "Test title",
+    description: "test description",
+    image: "test image"
+  }
+  const postBlog = async (blog) => {
+    console.log(blog)
+    const res = await fetch(url, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(state)
+      body: JSON.stringify(blog)
     })
     const result = await res.json()
     console.log(result)
+  }
+
+  const postBlogAxios = async (blog) => {
+    axios.post(process.env.BACKEND_URL, {
+      title: blog.title,
+      description: blog.description,
+      image: blog.image
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    // onSubmit will POST to the database
+    console.log("This is handleSubmit and the title", state);
+    postBlog(testObject)
+    postBlogAxios(testObject)
+    // axios.post(process.env.BACKEND_URL, {
+    //   ...state,
+    // }).then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   })
+    
+      // axios({
+      //   method: 'post',
+      //   url: url,
+      //   data: {
+      //     ...testObject
+          
+      //   },
+      //   timeout: 3000,
+      //   headers: {
+      //         'content-type': 'application/json'
+      //       },
+      // }).then(function (response) {
+      //       console.log("response",response);
+      //     })
+      //     .catch(function (error) {
+      //       console.log("error", error);
+      //     })
+
+    
 
     // resets the form data to empty stings
     dispatch(initialState);
     // to remove preview after submit
     setFilePreview(false);
-    console.log("Test text", testText)
+    // console.log("Test text", testText)
   }
 
   return (
