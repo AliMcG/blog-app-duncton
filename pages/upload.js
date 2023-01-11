@@ -16,7 +16,7 @@ const initialState = {
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 function AddNewBlog() {
-  const url = process.env.BACKEND_URL
+  
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState(false);
   const [testText, setTestText] = useState("")
@@ -79,7 +79,7 @@ function AddNewBlog() {
   //   image: "test image"
   // }
   const postBlog = async (blog) => {
-    console.log(blog)
+    // console.log(blog)
     const res = await fetch("/api/create", {
       method: 'POST',
       headers: {
@@ -108,7 +108,7 @@ function AddNewBlog() {
   async function handleSubmit(e) {
     e.preventDefault();
     // onSubmit will POST to the database
-    console.log("This is handleSubmit and the title", state);
+    // console.log("This is handleSubmit and the title", state);
     postBlog(state)
 
 
