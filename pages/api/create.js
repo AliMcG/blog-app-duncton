@@ -1,6 +1,15 @@
 import dbConnect from "../../lib/dbConnect.js";
 import Blogs from "../../models/Blog.js";
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb',
+    },
+  },
+}
+
+
 export default async function handler(req, res) {
   await dbConnect();
   const { title, description, image } = req.body;
