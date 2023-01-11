@@ -73,14 +73,14 @@ function AddNewBlog() {
     };
   }, [file]);
 
-  const testObject = {
-    title: "Test title",
-    description: "test description",
-    image: "test image"
-  }
+  // const testObject = {
+  //   title: "Test title",
+  //   description: "test description",
+  //   image: "test image"
+  // }
   const postBlog = async (blog) => {
     console.log(blog)
-    const res = await fetch(url, {
+    const res = await fetch("/api/create", {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -88,57 +88,29 @@ function AddNewBlog() {
       body: JSON.stringify(blog)
     })
     const result = await res.json()
-    console.log(result)
+    // console.log("postBlog",result)
   }
 
-  const postBlogAxios = async (blog) => {
-    axios.post(process.env.BACKEND_URL, {
-      title: blog.title,
-      description: blog.description,
-      image: blog.image
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+  // const postBlogAxios = async (blog) => {
+  //   axios.post(process.env.BACKEND_URL, {
+  //     title: blog.title,
+  //     description: blog.description,
+  //     image: blog.image
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log("postAxios",error);
+  //   });
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
     // onSubmit will POST to the database
     console.log("This is handleSubmit and the title", state);
-    postBlog(testObject)
-    postBlogAxios(testObject)
-    // axios.post(process.env.BACKEND_URL, {
-    //   ...state,
-    // }).then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   })
-    
-      // axios({
-      //   method: 'post',
-      //   url: url,
-      //   data: {
-      //     ...testObject
-          
-      //   },
-      //   timeout: 3000,
-      //   headers: {
-      //         'content-type': 'application/json'
-      //       },
-      // }).then(function (response) {
-      //       console.log("response",response);
-      //     })
-      //     .catch(function (error) {
-      //       console.log("error", error);
-      //     })
+    postBlog(state)
 
-    
 
     // resets the form data to empty stings
     dispatch(initialState);
