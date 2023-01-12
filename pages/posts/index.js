@@ -13,7 +13,12 @@ export const getStaticProps = async ()=> {
   // // const data = await res.json()
   // console.log(data.data.listPosts.items)
   return {
-    props: { posts: data }
+    props: { posts: data },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 10, // In seconds
+    fallback: true
   }
 }
 

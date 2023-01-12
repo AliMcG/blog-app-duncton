@@ -20,6 +20,7 @@ export const getStaticPaths = async () => {
   return {
     paths,
     fallback: "blocking",
+    // revalidate: 10
   };
 };
 
@@ -33,7 +34,8 @@ export const getStaticProps = async (context) => {
   
   return {
     props: { post: data },
-    revalidate: 10,
+    // revalidate: 10,
+    
   };
 };
 
