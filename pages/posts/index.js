@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/Single.module.css";
+import { Markup } from 'interweave';
 
 import testData from "../../Data/testPostData";
 
@@ -25,8 +26,9 @@ function Posts({ posts }) {
     <div className={styles.blogs}>
       <h1>Blog Posts</h1>
       {posts.map((post) => (
-        <Link href={"/posts/" + post._id} key={post._id}>
-          <div className={styles.single}>
+        
+        <Link href={"/posts/" + post._id} key={post._id} className={styles.single} >
+          
             <Image
               unoptimized
               src={post.image ? post.image : "/trees.jpg"}
@@ -36,10 +38,13 @@ function Posts({ posts }) {
             />
             <article>
               <h2>{post.title}</h2>
-              <p>{post.description}</p>
+              {/* <p>{post.description}</p> */}
+              <Markup content={post.description} />
             </article>
-          </div>
+          
         </Link>
+        
+       
       ))}
     </div>
   );

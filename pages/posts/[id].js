@@ -42,7 +42,8 @@ export const getStaticProps = async (context) => {
 const BlogDetails = ({ post }) => {
   
   return (
-    <div className={styles.single}>
+    <div className={styles.container}>
+         <div className={styles.single}>
       <Image
         unoptimized src={post?.image ? post.image : "/trees.jpg"}
         alt="Trees"
@@ -55,6 +56,8 @@ const BlogDetails = ({ post }) => {
         <Markup content={post.description} />
       </article>
     </div>
+    </div>
+ 
   );
 };
 
