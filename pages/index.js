@@ -1,5 +1,6 @@
 import BlogDisplay from "../components/BlogDisplay";
 import styles from "../styles/Home.module.css";
+import { useRouter } from 'next/router'
 
 
 // fetches the data and returns the "props" that available in context for this page
@@ -14,7 +15,7 @@ export const getStaticProps = async () => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    revalidate: 60, // In seconds
+    revalidate: 10, // In seconds
     // fallback: true
   }
   }
@@ -23,6 +24,10 @@ export const getStaticProps = async () => {
 // main page it shows post data with a substring for the post.text
 
 export default function Home({ posts }) {
+  const router = useRouter()
+  if (router.isFallback){
+    return <div>Loading...</div>
+  }
   return (
     <div className={styles.container}>
       <main>
