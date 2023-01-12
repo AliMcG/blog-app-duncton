@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 
 
 // fetches the data and returns the "props" that available in context for this page
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   // const response = await fetch("http://localhost:4000/api/blogs/blogs-data")
   const response = await fetch(process.env.BACKEND_URL);
   // console.log("index.js", response);
@@ -14,7 +14,7 @@ export const getServerSideProps = async () => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    // revalidate: 10, // In seconds
+    revalidate: 60, // In seconds
     // fallback: true
   }
   }
