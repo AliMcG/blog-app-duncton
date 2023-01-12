@@ -1,7 +1,7 @@
 .single {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  /* justify-content: space-between; */
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -13,6 +13,7 @@
   /* width: 62.5rem;
   height: 19.375rem; */
   background-color: #F2F7FF;
+  width: 80rem;
 }
 
 .single h2 {
@@ -29,5 +30,13 @@
   color: rgb(79, 76, 76);
 }
 
+.blogs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: red;
+  margin: auto;
+}
 
 
